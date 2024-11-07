@@ -7,30 +7,29 @@ require('dotenv').config();
 
 
 router.post('/inscription', async (req,res) => {
-    res.send('page inscription')
-    const {nom, email, motDePasse} = req.body;
+    
+    let { nom, prenom, email, motDePasse } = req.body;
 
-    if (!nom || !email || !motDePasse) {
+    if (!nom || !prenom || !email || !motDePasse) {
         return res.status(422).send({ error: 'veuillez remplir tous les champs' });
     }
     else{
 
         const utilisateur = new Utilisateur({
             nom,
+            prenom,
             email,
             motDePasse
         })
         try{
             await utilisateur.save()
-            console.log(`utilisateur save`);
+            console.log(`utilisateur save`, utilisateur);
         }
         catch(err){
             return res.status(422).send({ error: 'veuillez remplir tous les champs' });
         }
 
     }
-
-
-})
+});
 
 module.exports = router;

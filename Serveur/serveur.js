@@ -4,7 +4,7 @@ const app = express();
 const bodyParser = require('body-parser');
 
 // important de la basse de donné et collections
-require('./db')
+require('./database/db')
 require('./collections/Utilisateur')
 
 // importation des routes
